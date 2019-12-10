@@ -1,0 +1,233 @@
+@import "utils/libs";
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
+@import "utils/reset";
+
+html {
+  line-height: $mainLineHeight;
+	font-size: $mainFontSize;
+	color: $mainFontColor;
+  height: 100%;
+  @media screen and (max-width: $desktopWidth) {
+		font-size: 16px;
+  }
+  @media screen and (max-width: $tableWidth) {
+		font-size: 15px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+		font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $mainFont;
+	font-size: $mainFontSize;
+  font-weight: $mainFontWeight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:before, *:after { box-sizing: border-box; }
+
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+
+a { text-decoration: none; }
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+section, .section {
+  position: relative;
+  padding: 40px 0;
+  @media screen and (max-width: $desktopWidth) {
+    padding: 36px 0;
+  }
+  @media screen and (max-width: $desktopWidth) {
+    padding: 28px 0;
+  }
+  @media screen and (max-width: $desktopWidth) {
+    padding: 20px 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  margin: 0 auto;
+  max-width: $desktopWidth;
+  @media screen and (max-width: $smDesktopWidth) {
+    max-width: tableWidth;
+  }
+  @media screen and (max-width: $tableWidth) {
+    max-width: phoneWidth;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    max-width: smPhoneWidth;
+  }
+}
+
+.canvas-block{
+  width:600px;
+  height:600px;
+  margin:0 auto;
+}
+.svg-block{
+  width:600px;
+  height:600px;
+  margin:0 auto;
+}
+.svg-marks {
+  transform: translate(20px, 20px);
+  stroke-width: 0.2;
+}
+.svg-marks > line:nth-child(1) {
+  transform: rotate(30deg);
+}
+.svg-marks > line:nth-child(2) {
+  transform: rotate(calc(2 * 30deg));
+}
+.svg-marks > line:nth-child(3) {
+  transform: rotate(calc(3 * 30deg));
+
+}
+.svg-marks > line:nth-child(4) {
+  transform: rotate(calc(4 * 30deg));
+}
+.svg-marks > line:nth-child(5) {
+  transform: rotate(calc(5 * 30deg));
+}
+.svg-marks > line:nth-child(6) {
+  transform: rotate(calc(6 * 30deg));
+
+}
+.svg-marks > line:nth-child(7) {
+  transform: rotate(calc(7 * 30deg));
+}
+.svg-marks > line:nth-child(8) {
+  transform: rotate(calc(8 * 30deg));
+}
+.svg-marks > line:nth-child(9) {
+  transform: rotate(calc(9 * 30deg));
+
+}
+.svg-marks > line:nth-child(10) {
+  transform: rotate(calc(10 * 30deg));
+}
+.svg-marks > line:nth-child(11) {
+  transform: rotate(calc(11 * 30deg));
+}
+.svg-marks > line:nth-child(12) {
+  transform: rotate(calc(12 * 30deg));
+
+}
+svg {
+  width: 100%;
+  fill: white;
+  stroke: black;
+  stroke-width: 0.3px;
+  stroke-linecap: square;
+}
+.seconds,
+.minute,
+.hour
+{
+  transform: translate(20px, 20px) rotate(0deg);
+}
+.seconds{
+  fill:red;
+}
+.seconds {
+  stroke-width: 0.3;
+  stroke: red;
+}
+.minute {
+  stroke-width: 0.6;
+  stroke: blue;
+}
+.hour {
+  stroke-width: 1;
+}
+.svg-marks line{
+  stroke:blue;
+}
+
+
+.seconds {
+  transform: translate(20px, 20px) rotate(calc(var(--start-seconds) * 6deg));
+  stroke-width: 0.3;
+  animation: rotateSecondHand 60s steps(60) infinite;
+  stroke: #d00505;
+}
+
+.minute {
+  transform: translate(20px, 20px) rotate(calc(var(--start-minutes) * 6deg));
+  stroke-width: 0.6;
+  animation: rotateMinuteHand 3600s steps(60) infinite;
+  animation-delay: calc(var(--start-seconds) * -1 * 1s);
+}
+
+.hour {
+  transform: translate(20px, 20px) rotate(calc(var(--start-hours) * 30deg));
+  animation: rotateHourHand calc(12 * 60 * 60s) linear infinite;
+  stroke-width: 1;
+  animation-delay: calc(calc(var(--start-minutes) * -60 * 1s) + calc(var(--start-seconds) * -1 * 1s));
+}
+
+.clear{
+  margin-top: 20px;
+}
+.pin {
+    stroke: #000;
+    stroke-width: .2;
+    fill: #000;
+}
+
+@keyframes rotateSecondHand {
+  from {
+    transform: translate(20px, 20px) rotate(calc(var(--start-seconds) * 6deg));
+  }
+  to {
+    transform: translate(20px, 20px) rotate(calc(var(--start-seconds) * 6deg + 360deg));
+  }
+}
+
+@keyframes rotateMinuteHand {
+  from {
+    transform: translate(20px, 20px) rotate(calc(var(--start-minutes) * 6deg));
+  }
+  to {
+    transform: translate(20px, 20px) rotate(calc(var(--start-minutes) * 6deg + 360deg));
+  }
+}
+
+@keyframes rotateHourHand {
+  from {
+    transform: translate(20px, 20px) rotate(calc(var(--start-hours) * 30deg));
+  }
+  to {
+    transform: translate(20px, 20px) rotate(calc(var(--start-hours) * 30deg + 360deg));
+  }
+}
+.svg-block{
+  transform: rotate(-90deg);
+}
